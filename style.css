@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --mainColor: hsl(243, 87%, 12%);
+}
+
 h2,
 h4 {
   font-family: Raleway, sans-serif;
@@ -18,6 +22,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 70px;
+  animation: myAnim 1s ease 0s 1 normal forwards;
+  z-index: 99;
 }
 
 .header-menu {
@@ -40,7 +46,7 @@ header {
 .header-menu li a {
   text-decoration: none;
   font-family: Raleway, sans-serif;
-  color: hsl(243, 87%, 12%);
+  color: var(--mainColor);
 }
 
 /*Security section styling*/
@@ -53,24 +59,28 @@ header {
   justify-content: space-between;
   margin-bottom: 100px;
 }
+.image-section {
+  animation: myAnim3 1s ease 0s 1 normal forwards;
+}
 
 .illustration-image {
   width: 90%;
 }
 .mail-section {
   padding-right: 70px;
+  animation: myAnim2 1s ease 0s 1 normal forwards;
 }
 
 .mail-section h2 {
   font-family: Raleway, sans-serif;
-  color: hsl(243, 87%, 12%);
+  color: var(--mainColor);
   font-size: 2.5rem;
   line-height: 1.5;
   margin-bottom: 20px;
 }
 .mail-section p {
   font-family: Open Sans, sans-serif;
-  color: hsl(243, 87%, 12%);
+  color: var(--mainColor);
   margin-bottom: 20px;
   font-size: 1.1rem;
   padding-right: 50px;
@@ -111,11 +121,10 @@ header {
 /*Testimonial section styling*/
 
 .testimonial-section {
-  background-image: url(/images/bg-curve-desktop.svg);
+  background-image: url(images/bg-curve-desktop.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
-  margin-bottom: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -135,7 +144,7 @@ header {
   font-family: Open Sans, sans-serif;
   line-height: 1.7;
   font-size: 0.9rem;
-  color: hsl(243, 87%, 12%);
+  color: var(--mainColor);
 }
 
 .profile-image {
@@ -155,7 +164,7 @@ header {
 }
 .profile-text h4 {
   font-family: Raleway, sans-serif;
-  color: hsl(243, 87%, 12%);
+  color: var(--mainColor);
   font-size: 0.8rem;
   font-family: 700;
 }
@@ -164,7 +173,7 @@ header {
   font-size: 0.7rem;
 }
 .left-side-info h2 {
-  color: hsl(243, 87%, 12%);
+  color: var(--mainColor);
   font-size: 2.5rem;
   margin-bottom: 30px;
 }
@@ -192,7 +201,7 @@ header {
 .left-side-info p {
   padding-right: 155px;
   margin-bottom: 20px;
-  color: hsl(243, 87%, 12%);
+  color: var(--mainColor);
   line-height: 1.5;
 }
 /* Access section styling*/
@@ -251,7 +260,7 @@ header {
 /*Footer styling */
 
 footer {
-  background-color: hsl(243, 87%, 12%);
+  background-color: var(--mainColor);
   padding: 120px 70px;
   display: flex;
   flex-direction: column;
@@ -300,17 +309,24 @@ footer nav {
   align-items: center;
   margin-bottom: 20px;
 }
-
-.social > i {
+.facebook-icon,
+.twitter-icon,
+.instagram-icon {
+  display: inline-block;
+  flex-direction: column;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 10px;
+  margin-left: 10px;
   color: #fff;
-  margin-left: 20px;
-  font-size: 20px;
-  transition: color 0.15s ease-in, transform 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
-.social > i:hover {
-  color: hsl(224, 84%, 57%);
+.facebook-icon:hover,
+.twitter-icon:hover,
+.instagram-icon:hover {
+  border: 1px solid hsl(224, 93%, 58%);
+  color: hsl(224, 93%, 58%);
   cursor: pointer;
-  transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
@@ -339,7 +355,7 @@ footer nav {
     margin-bottom: 30px;
   }
   .testimonial-section {
-    background-image: url(/images/bg-curve-mobile.svg);
+    background-image: url(images/bg-curve-mobile.svg);
     background-repeat: no-repeat;
     background-size: cover;
     grid-template-columns: 1fr;
@@ -451,6 +467,9 @@ footer nav {
     bottom: 0;
     width: 200px;
     transition: all 0.5s ease-in;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 100;
   }
   .sidebar-menu {
     display: flex;
@@ -516,7 +535,7 @@ footer nav {
     margin-bottom: 30px;
   }
   .testimonial-section {
-    background-image: url(/images/bg-curve-mobile.svg);
+    background-image: url(images/bg-curve-desktop.svg);
     background-repeat: no-repeat;
     background-size: cover;
     grid-template-columns: 1fr;
@@ -642,9 +661,10 @@ footer nav {
     right: 0;
     bottom: 0;
     width: 200px;
-    transition: transform 0.5s ease-in;
-    transform: translateX(-100%);
-    transform: translateX(0);
+    transition: all 0.5s ease-in;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 100;
   }
   .sidebar-menu {
     display: flex;
@@ -679,5 +699,73 @@ footer nav {
   }
   .hamburger-menu i.hide {
     display: none;
+  }
+}
+
+@keyframes myAnim {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    transform: translateY(-250px);
+  }
+
+  38% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  55% {
+    animation-timing-function: ease-in;
+    transform: translateY(-65px);
+  }
+
+  72% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
+
+  81% {
+    animation-timing-function: ease-in;
+    transform: translateY(-28px);
+  }
+
+  90% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
+
+  95% {
+    animation-timing-function: ease-in;
+    transform: translateY(-8px);
+  }
+
+  100% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
+}
+
+@keyframes myAnim2 {
+  0% {
+    opacity: 0;
+    transform: translateX(-250px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes myAnim3 {
+  0% {
+    opacity: 0;
+    transform: translateX(250px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
